@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Talk - Clases de Chino Pachu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .phrases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .phrase-card {
+            background: #2D2D34;
+            border-left: 4px solid var(--rojo-chino);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .phrase-card:hover {
+            transform: translateY(-5px);
+            background: #383840;
+        }
+        .phrase-ch {
+            font-size: 1.3rem;
+            color: var(--dorado-chino);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .phrase-es {
+            color: var(--texto-principal);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .phrase-structure {
+            font-size: 0.8rem;
+            color: var(--texto-secundario);
+            font-style: italic;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Inicio</a>
+        <a href="ejercicios.html">Ejercicios</a>
+        <a href="diccionario.html">Diccionario</a>
+        <a href="randomtalk.html" class="active">Conversaciones</a>
+        <a href="translator.html">Traductor</a>
+    </nav>
+
+    <header class="main-header">
+        <h1>💬 Random Talk</h1>
+        <p class="subtitle">Descubre frases reales y estructuradas extraídas de nuestro material.</p>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <div class="controls">
+                <button class="btn-primary" style="width: auto;" onclick="loadRandomPhrases()">🔄 Mostrar 100 Frases Aleatorias</button>
+            </div>
+            
+            <div id="phrases-container" class="phrases-grid">
+                <!-- Se llenará con JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Clases de Chino Pachu. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Archivo JS para los datos -->
+    <script src="data.js"></script>
+    <script src="fixed_phrases.js"></script>
+    <script>
+        function loadRandomPhrases() {
+            const container = document.getElementById('phrases-container');
+            if (!container || typeof fixedPhrases === 'undefined') return;
+            
+            container.innerHTML = '';
+            
+            // Mezclar y tomar 100 de las 500 frases fijas
+            const shuffled = [...fixedPhrases].sort(() => 0.5 - Math.random());
+            const selected = shuffled.slice(0, 100);
+            
+            selected.forEach(phrase => {
+                const card = document.createElement('div');
+                card.className = 'phrase-card';
+                card.innerHTML = `
+                    <div class="phrase-ch">${phrase.zh}</div>
+                    <div class="phrase-es">${phrase.es}</div>
+                    <div class="phrase-structure">[ ${phrase.struct} ]</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadRandomPhrases);
+    </script>
+    <script src="plexus.js"></script>
+</body>
+</html>

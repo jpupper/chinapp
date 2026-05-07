@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios - Clases de Chino Pachu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Inicio</a>
+        <a href="ejercicios.html" class="active">Ejercicios</a>
+        <a href="diccionario.html">Diccionario</a>
+        <a href="randomtalk.html">Conversaciones</a>
+        <a href="translator.html">Traductor</a>
+    </nav>
+
+    <header class="main-header">
+        <h1>✍️ Práctica de Chino</h1>
+        <p class="subtitle">Pon a prueba lo aprendido de forma aleatoria.</p>
+    </header>
+
+    <main class="container">
+        <!-- SECCIÓN DE EJERCICIOS -->
+        <section id="ejercicios" class="card">
+            <h2>Ejercicios Interactivos</h2>
+            <p class="section-desc">Selecciona el tipo de ejercicio que deseas practicar usando las pestañas.</p>
+            
+            <div class="tabs-container">
+                <button class="tab-btn active" onclick="openTab(event, 'tab-match')">Unir Flechas</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-fill')">Completar Frases</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-build')">Armar Oraciones</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab-speak')">Leer en Voz Alta</button>
+            </div>
+
+            <!-- Ejercicio 1: Unir flechas -->
+            <div id="tab-match" class="tab-content active">
+                <div class="exercise-box">
+                    <div class="exercise-header">
+                        <h3>1. Unir con flechas (Tonos y Significado)</h3>
+                        <button class="btn-reset" onclick="resetMatchGame()">↻ Cargar nuevos aleatorios</button>
+                    </div>
+                    <p>Selecciona una palabra en pinyin/chino y luego su significado correspondiente en español.</p>
+                    
+                    <div id="match-game" class="match-game-container">
+                        <svg id="lines-svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></svg>
+                        <div id="chinese-words" class="word-column">
+                            <!-- Botones generados por JS -->
+                        </div>
+                        <div id="spanish-words" class="word-column">
+                            <!-- Botones generados por JS -->
+                        </div>
+                    </div>
+                    <p id="match-message" class="message"></p>
+                </div>
+            </div>
+
+            <!-- Ejercicio 2: Completa la frase -->
+            <div id="tab-fill" class="tab-content">
+                <div class="exercise-box">
+                    <div class="exercise-header">
+                        <h3>2. Completa las frases chinas</h3>
+                        <button class="btn-reset" onclick="initFillBlanks()">↻ Cargar nuevas frases</button>
+                    </div>
+                    <p>Selecciona la opción correcta para completar la frase.</p>
+                    
+                    <div id="fill-blanks-container">
+                        <!-- Se llena con JS -->
+                    </div>
+                    
+                    <button class="btn-primary" onclick="checkFillBlanks()">Comprobar Respuestas</button>
+                    <p id="fill-message" class="message"></p>
+                </div>
+            </div>
+
+            <!-- Ejercicio 3: Armar Oraciones -->
+            <div id="tab-build" class="tab-content">
+                <div class="exercise-box">
+                    <div class="exercise-header">
+                        <h3>3. Arma la Oración</h3>
+                        <button class="btn-reset" onclick="initBuilder()">↻ Cargar nueva frase</button>
+                    </div>
+                    <p>Ordena las palabras chinas para que coincidan con la traducción en español.</p>
+                    
+                    <div style="margin: 1.5rem 0;">
+                        <p style="color: var(--texto-secundario); font-style: italic; margin-bottom: 10px; font-size: 1.1rem;" id="build-translation">"..."</p>
+                        
+                        <p style="color: var(--dorado-chino); font-weight: 600; margin-bottom: 5px;">Tu oración:</p>
+                        <div id="build-constructed" class="builder-area">
+                            <!-- Palabras seleccionadas -->
+                        </div>
+                        
+                        <p style="color: var(--texto-principal); font-weight: 600; margin-bottom: 5px;">Palabras disponibles:</p>
+                        <div id="build-scrambled" class="builder-area" style="background: rgba(0,0,0,0.2);">
+                            <!-- Palabras desordenadas -->
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary" onclick="checkBuilder()">Comprobar Oración</button>
+                    <p id="build-message" class="message"></p>
+                </div>
+            </div>
+            <!-- Ejercicio 4: Leer en Voz Alta -->
+            <div id="tab-speak" class="tab-content">
+                <div class="exercise-box">
+                    <div class="exercise-header">
+                        <h3>4. Leer en Voz Alta</h3>
+                        <button class="btn-reset" onclick="initSpeakExercise()">↻ Cargar nueva frase</button>
+                    </div>
+                    <p>Escucha la frase, presiona grabar y repítela en chino. La IA evaluará tu pronunciación.</p>
+                    
+                    <div style="margin: 1.5rem 0; text-align: center;">
+                        <div id="speak-target-zh" style="font-size: 2rem; color: var(--dorado-chino); font-weight: 600; margin-bottom: 5px;">...</div>
+                        <div id="speak-target-es" style="color: var(--texto-secundario); font-style: italic; margin-bottom: 15px;">"..."</div>
+                        
+                        <button class="btn-primary" style="background-color: #4CAF50; margin-bottom: 15px;" onclick="playChineseAudio()">
+                            🔊 Escuchar Pronunciación
+                        </button>
+
+                        <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                            <button class="btn-primary" id="btn-record-speak" style="width: auto; display: flex; align-items: center; gap: 8px;">
+                                <span id="icon-record-speak">🎤</span> Grabar mi voz
+                            </button>
+                        </div>
+                        
+                        <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border: 1px dashed var(--borde);">
+                            <p style="color: var(--texto-principal); font-weight: 600; margin-bottom: 5px;">Lo que la IA entendió:</p>
+                            <p id="speak-transcription" style="color: var(--dorado-oscuro); font-size: 1.2rem; min-height: 30px;">...</p>
+                        </div>
+                    </div>
+                    
+                    <p id="speak-message" class="message"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Clases de Chino Pachu. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Archivo JS para los datos y la lógica -->
+    <script src="data.js"></script>
+    <script src="fixed_phrases.js"></script>
+    <script src="script.js"></script>
+    <script src="plexus.js"></script>
+</body>
+</html>

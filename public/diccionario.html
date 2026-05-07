@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diccionario - Clases de Chino Pachu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Inicio</a>
+        <a href="ejercicios.html">Ejercicios</a>
+        <a href="diccionario.html" class="active">Diccionario</a>
+        <a href="randomtalk.html">Conversaciones</a>
+        <a href="translator.html">Traductor</a>
+    </nav>
+
+    <header class="main-header">
+        <h1>📖 Diccionario y Tonos</h1>
+        <p class="subtitle">Conceptos extraídos de nuestro material principal.</p>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>Glosario de la Clase</h2>
+            <p class="section-desc">Aquí encontrarás el vocabulario y las reglas de los tonos. Estos datos se utilizan para generar los ejercicios aleatorios.</p>
+            
+            <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                <label for="category-filter" style="color: var(--dorado-chino); font-weight: 600;">Filtrar por Categoría:</label>
+                <select id="category-filter" style="padding: 8px 12px; border-radius: 6px; background: #33333C; color: var(--texto-principal); border: 1px solid var(--borde); font-family: inherit; font-size: 1rem; cursor: pointer; outline: none;">
+                    <option value="ALL">Todas las categorías</option>
+                </select>
+            </div>
+
+            <div style="overflow-x:auto;">
+                <table class="dictionary-table">
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Pinyin / Chino</th>
+                            <th>Español / Significado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dictionary-body">
+                        <!-- Las filas se llenan con JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Clases de Chino Pachu. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Archivo JS para los datos -->
+    <script src="data.js"></script>
+    <script src="plexus.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tbody = document.getElementById('dictionary-body');
+            const filterSelect = document.getElementById('category-filter');
+            
+            // Extraer categorías únicas
+            const categories = [...new Set(dictionaryData.map(item => item.categoria || 'General'))].sort();
+            
+            // Llenar el select
+            categories.forEach(cat => {
+                const option = document.createElement('option');
+                option.value = cat;
+                option.textContent = cat;
+                filterSelect.appendChild(option);
+            });
+
+            // Función para renderizar tabla
+            function renderTable(filterCat) {
+                tbody.innerHTML = '';
+                const filteredData = filterCat === 'ALL' ? dictionaryData : dictionaryData.filter(item => (item.categoria || 'General') === filterCat);
+                
+                filteredData.forEach(item => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><span style="font-size:0.85em; color:var(--dorado-oscuro); border: 1px solid var(--borde); padding: 2px 6px; border-radius:4px; background: rgba(0,0,0,0.2)">${item.categoria || 'General'}</span></td>
+                        <td>${item.zh}</td>
+                        <td>${item.es}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            // Render inicial
+            renderTable('ALL');
+
+            // Evento de cambio
+            filterSelect.addEventListener('change', (e) => {
+                renderTable(e.target.value);
+            });
+        });
+    </script>
+</body>
+</html>

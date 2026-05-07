@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor - Clases de Chino Pachu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .translator-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .input-section, .output-section {
+            background: rgba(35, 35, 42, 0.6);
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 10px;
+            border: 1px solid var(--borde);
+            border-radius: 6px;
+            background-color: rgba(20, 20, 25, 0.8);
+            color: var(--texto-principal);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        textarea:focus {
+            border-color: var(--dorado-chino);
+        }
+        .controls-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .controls-group label {
+            color: var(--texto-secundario);
+            font-weight: 600;
+        }
+        .controls-group select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: rgba(20, 20, 25, 0.8);
+            color: var(--texto-principal);
+            border: 1px solid var(--borde);
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            outline: none;
+        }
+        .btn-translate, .btn-microphone {
+            background-color: var(--rojo-chino);
+            color: #FFF;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-translate:hover, .btn-microphone:hover {
+            background-color: var(--rojo-oscuro);
+        }
+        .btn-microphone.recording {
+            background-color: #E57373; /* Rojo más claro para indicar grabación */
+        }
+        .translation-output {
+            min-height: 100px;
+            padding: 15px;
+            border: 1px solid var(--borde);
+            border-radius: 6px;
+            background-color: rgba(20, 20, 25, 0.8);
+            color: var(--dorado-chino);
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        .message {
+            margin-top: 1rem;
+            color: var(--texto-secundario);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Inicio</a>
+        <a href="ejercicios.html">Ejercicios</a>
+        <a href="diccionario.html">Diccionario</a>
+        <a href="randomtalk.html">Conversaciones</a>
+        <a href="translator.html" class="active">Traductor</a>
+    </nav>
+
+    <header class="main-header">
+        <h1>🗣️ Traductor Chino-Español</h1>
+        <p class="subtitle">Traduce texto o voz del chino al español.</p>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <div class="translator-container">
+                <div class="input-section">
+                    <h3>Texto en Chino (o Pinyin)</h3>
+                    <textarea id="chinese-input" placeholder="Escribe aquí el texto en chino o pinyin..."></textarea>
+                    <div class="controls-group">
+                        <button class="btn-translate" id="translate-text-btn">
+                            <span>Traducir Texto</span>
+                        </button>
+                        <button class="btn-microphone" id="record-btn">
+                            <span id="record-icon">🎤</span>
+                            <span id="record-text">Grabar Voz</span>
+                        </button>
+                        <label for="whisper-lang-select">Idioma Whisper:</label>
+                        <select id="whisper-lang-select">
+                            <option value="zh">Chino (zh)</option>
+                            <option value="en">Inglés (en)</option>
+                            <option value="es">Español (es)</option>
+                            <!-- Más idiomas si Whisper los soporta -->
+                        </select>
+                    </div>
+                    <div id="audio-playback-container" style="margin-top: 15px; display: none; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; border: 1px dashed var(--borde);">
+                        <p style="color: var(--texto-secundario); font-size: 0.9rem; margin-bottom: 5px;">Último audio grabado:</p>
+                        <audio id="last-recording" controls style="width: 100%; height: 40px;"></audio>
+                    </div>
+                    <p id="status-message" class="message"></p>
+                </div>
+
+                <div class="output-section">
+                    <h3>Traducción al Español</h3>
+                    <div id="spanish-output" class="translation-output">
+                        <!-- Aquí aparecerá la traducción -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Clases de Chino Pachu. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="plexus.js"></script>
+    <script src="translator.js"></script>
+</body>
+</html>
