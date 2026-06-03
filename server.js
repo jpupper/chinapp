@@ -4,6 +4,7 @@ const translate = require('translate-google'); // Libreria de traduccion gratuit
 const multer = require('multer'); // Para manejar la subida de archivos
 const { spawn } = require('child_process'); // Para ejecutar scripts de Python
 const fs = require('fs'); // Para manejar archivos
+const https = require('https'); // Para el proxy TTS
 const app = express();
 const port = 6875;
 
@@ -12,6 +13,10 @@ app.use(express.json());
 
 // Servir archivos estáticos desde la carpeta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/health', (req, res) => {
+    res.json({ ok: true, voice: true });
+});
 
 // --- Configuración de Multer para subida de audio ---
 const storage = multer.diskStorage({
@@ -95,6 +100,66 @@ app.post('/transcribe-audio', upload.single('audio'), (req, res) => {
     });
 });
 
+
+// Endpoint proxy para Google Translate TTS
+// Usa el módulo https nativo para mayor compatibilidad
+app.get('/tts', (req, res) => {
+    const text = req.query.text;
+    if (!text) {
+        return res.status(400).json({ error: 'Falta el parámetro text.' });
+    }
+
+    const params = new URLSearchParams({
+        ie: 'UTF-8',
+        q: text,
+        tl: 'zh-CN',
+        client: 'tw-ob',
+        ttsspeed: '0.8'
+    });
+
+    const options = {
+        hostname: 'translate.google.com',
+        path: `/translate_tts?${params.toString()}`,
+        method: 'GET',
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Referer': 'https://translate.google.com/',
+            'Accept': 'audio/mpeg, audio/*',
+        }
+    };
+
+    console.log(`[/tts] Solicitando audio para: "${text}"`);
+
+    const request = https.get(options, (googleRes) => {
+        console.log(`[/tts] Respuesta de Google: ${googleRes.statusCode}`);
+
+        // Seguir redirecciones manualmente si las hay
+        if (googleRes.statusCode === 301 || googleRes.statusCode === 302) {
+            console.log(`[/tts] Redirigiendo a: ${googleRes.headers.location}`);
+            return res.status(502).json({ error: 'Redirección inesperada de Google TTS.' });
+        }
+
+        if (googleRes.statusCode !== 200) {
+            return res.status(502).json({ error: `Google TTS respondió con código ${googleRes.statusCode}` });
+        }
+
+        res.setHeader('Content-Type', 'audio/mpeg');
+        res.setHeader('Cache-Control', 'public, max-age=86400');
+        googleRes.pipe(res); // Transmitir el audio directamente al cliente
+        console.log(`[/tts] Transmitiendo audio para: "${text}"`);
+    });
+
+    request.on('error', (error) => {
+        console.error(`[/tts] Error de red: ${error.code} - ${error.message}`);
+        res.status(500).json({ error: 'Error de red al contactar Google TTS.', code: error.code, details: error.message });
+    });
+
+    request.setTimeout(8000, () => {
+        console.error('[/tts] Timeout al contactar Google TTS.');
+        request.destroy();
+        res.status(504).json({ error: 'Timeout al contactar Google TTS.' });
+    });
+});
 
 // Iniciar el servidor
 app.listen(port, () => {

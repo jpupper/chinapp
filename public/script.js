@@ -12,6 +12,24 @@ let selectedZh = null;
 let selectedEs = null;
 let matchedPairs = 0;
 let currentExerciseData = [];
+let voiceServiceAvailable = null;
+
+async function checkVoiceService() {
+    if (voiceServiceAvailable !== null) return voiceServiceAvailable;
+    try {
+        const res = await fetch('health', { cache: 'no-store' });
+        if (!res.ok) {
+            voiceServiceAvailable = false;
+            return false;
+        }
+        const data = await res.json().catch(() => ({}));
+        voiceServiceAvailable = data && (data.voice === true || data.ok === true);
+        return voiceServiceAvailable;
+    } catch (_) {
+        voiceServiceAvailable = false;
+        return false;
+    }
+}
 
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -442,13 +460,26 @@ function initSpeakExercise() {
 
 function playChineseAudio() {
     if (!speakPhrase) return;
-    
-    // Usar la API de síntesis de voz del navegador
-    const utterance = new SpeechSynthesisUtterance(speakPhrase.zh);
-    utterance.lang = 'zh-CN'; // Chino mandarín
-    utterance.rate = 0.85; // Un poco más lento para aprender
-    
-    window.speechSynthesis.speak(utterance);
+
+    // Usar Google Translate TTS via proxy del servidor (mucho mejor calidad que el navegador)
+    const btn = document.querySelector('button[onclick="playChineseAudio()"]');
+    if (btn) btn.disabled = true;
+
+    const audioUrl = `tts?text=${encodeURIComponent(speakPhrase.zh)}`;
+    const audio = new Audio(audioUrl);
+
+    audio.onended = () => { if (btn) btn.disabled = false; };
+    audio.onerror = () => {
+        console.warn('[TTS] Fallo Google TTS, usando voz del navegador como fallback.');
+        if (btn) btn.disabled = false;
+        // Fallback al navegador si falla el proxy
+        const utterance = new SpeechSynthesisUtterance(speakPhrase.zh);
+        utterance.lang = 'zh-CN';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+    };
+
+    audio.play();
 }
 
 function setupSpeakRecorder() {
@@ -461,7 +492,30 @@ function setupSpeakRecorder() {
     const newRecordBtn = recordBtn.cloneNode(true);
     recordBtn.parentNode.replaceChild(newRecordBtn, recordBtn);
 
+    checkVoiceService().then((available) => {
+        if (!available) {
+            newRecordBtn.disabled = true;
+            newRecordBtn.style.opacity = '0.6';
+            newRecordBtn.style.cursor = 'not-allowed';
+            if (transEl) transEl.innerText = 'Funcionalidad no disponible.';
+            if (msgEl) {
+                msgEl.innerText = 'Reconocimiento de voz: funcionalidad no disponible.';
+                msgEl.className = 'message msg-error';
+            }
+        }
+    });
+
     newRecordBtn.addEventListener('click', async () => {
+        const available = await checkVoiceService();
+        if (!available) {
+            if (msgEl) {
+                msgEl.innerText = 'Reconocimiento de voz: funcionalidad no disponible.';
+                msgEl.className = 'message msg-error';
+            }
+            if (transEl) transEl.innerText = 'Funcionalidad no disponible.';
+            return;
+        }
+
         if (!isSpeakingRecording) {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -481,7 +535,7 @@ function setupSpeakRecorder() {
                     formData.append('language', 'zh');
 
                     try {
-                        const response = await fetch('/transcribe-audio', {
+                        const response = await fetch('transcribe-audio', {
                             method: 'POST',
                             body: formData
                         });
