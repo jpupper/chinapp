@@ -986,7 +986,7 @@
         /* ── Características como Tarjetas ── */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.2rem;
             margin-top: 1.5rem;
         }
@@ -1071,16 +1071,6 @@
             .proposal-section {
                 padding: 1.8rem;
             }
-            .demo-options.grid-2 {
-                grid-template-columns: 1fr;
-            }
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            .tab-nav .tab-btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.8rem;
-            }
             .match-columns {
                 flex-direction: column;
             }
@@ -1089,6 +1079,198 @@
             }
             .path-nodes {
                 padding-left: 2.2rem;
+            }
+        }
+
+        /* ── Exercise styles from ejercicios.html ── */
+        .exercise-box {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--uk-borde);
+            border-top: none;
+            padding: 2rem;
+            border-radius: 0 0 12px 12px;
+            margin-bottom: 0;
+        }
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .exercise-box h3 {
+            color: #81C784;
+            font-size: 1.3rem;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-reset {
+            background: transparent;
+            border: 1px solid var(--uk-borde);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--uk-texto-sec);
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+        .btn-reset:hover { 
+            background: rgba(255,255,255,0.06);
+            border-color: var(--uk-dorado);
+            color: var(--uk-dorado);
+        }
+        .match-game-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            position: relative;
+            gap: 2rem;
+        }
+        .word-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 48%;
+            position: relative;
+            z-index: 2;
+        }
+        .match-btn {
+            padding: 15px;
+            background: rgba(255,255,255,0.04);
+            color: var(--uk-texto);
+            border: 1px solid var(--uk-borde);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .match-btn:hover:not(.matched) {
+            background: rgba(212, 168, 67, 0.08);
+            border-color: var(--uk-dorado);
+            color: var(--uk-texto);
+        }
+        .match-btn.selected {
+            background: rgba(212, 168, 67, 0.15);
+            border-color: var(--uk-dorado);
+            color: var(--uk-dorado);
+            transform: scale(1.02);
+        }
+        .match-btn.matched {
+            background: rgba(76, 175, 80, 0.12);
+            border-color: #4CAF50;
+            color: #81C784;
+            cursor: default;
+            opacity: 0.7;
+        }
+        .match-btn.error-shake {
+            animation: shake 0.4s;
+            background: rgba(200, 16, 46, 0.12);
+            border-color: var(--uk-rojo);
+            color: #E57373;
+        }
+        .options-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .option-btn {
+            background: rgba(255,255,255,0.04);
+            color: var(--uk-texto-sec);
+            border: 1px solid var(--uk-borde);
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.2s;
+        }
+        .option-btn:hover { 
+            background: rgba(212, 168, 67, 0.08);
+            border-color: var(--uk-dorado);
+            color: var(--uk-dorado);
+        }
+        .option-btn.selected {
+            background: rgba(212, 168, 67, 0.15);
+            color: var(--uk-dorado);
+            border-color: var(--uk-dorado);
+        }
+        .blank-spot {
+            display: inline-block;
+            min-width: 60px;
+            border-bottom: 2px dashed var(--uk-texto-sec);
+            text-align: center;
+            color: var(--uk-dorado);
+            font-weight: bold;
+            padding: 0 10px;
+        }
+        .fill-blank-item {
+            margin: 1.5rem 0;
+            background: rgba(0,0,0,0.15);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #81C784;
+        }
+        .builder-area {
+            min-height: 60px;
+            background: rgba(0,0,0,0.25);
+            border: 1px dashed var(--uk-borde);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .word-chip {
+            background: rgba(212, 168, 67, 0.12);
+            color: var(--uk-texto);
+            border: 1px solid rgba(212, 168, 67, 0.25);
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-family: 'Noto Serif SC', serif;
+            transition: 0.2s;
+        }
+        .word-chip:hover {
+            transform: translateY(-2px);
+            border-color: var(--uk-dorado);
+        }
+        .btn-primary {
+            background: rgba(200, 16, 46, 0.8);
+            color: #FFF;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.3s;
+            margin-top: 15px;
+            width: 100%;
+        }
+        .btn-primary:hover {
+            background: var(--uk-rojo);
+        }
+        .message {
+            margin-top: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            min-height: 24px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .match-game-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .word-column {
+                width: 100%;
             }
         }
     </style>
@@ -1141,11 +1323,14 @@
                 La plataforma incluye <strong style="color: #81C784;">múltiples tipologías de ejercicios</strong> 
                 que cubren vocabulario, gramática y comprensión. Hacé clic en las pestañas para probarlos.
             </p>
+            <p style="margin-bottom: 1rem;">
+                📌 <a href="ejercicios.html" target="_blank" style="color: #81C784; font-weight: 600; text-decoration: none; border-bottom: 2px solid #81C784; padding-bottom: 2px;">EJERCICIOS → Panel completo con más ejercicios interactivos</a>
+            </p>
 
             <div class="exercise-tabs">
                 <div class="tab-nav">
-                    <button class="tab-btn active" data-tab="tab-matching">
-                        <span class="tab-icon">🔗</span> Unir Correspondencias
+                    <button class="tab-btn active" data-tab="tab-match">
+                        <span class="tab-icon">🔗</span> Unir Flechas
                     </button>
                     <button class="tab-btn" data-tab="tab-fill">
                         <span class="tab-icon">✍️</span> Completar Frases
@@ -1153,111 +1338,73 @@
                     <button class="tab-btn" data-tab="tab-build">
                         <span class="tab-icon">🧱</span> Armar Oraciones
                     </button>
-                    <button class="tab-btn" data-tab="tab-dialog">
-                        <span class="tab-icon">💬</span> Conversaciones
-                    </button>
-                    <button class="tab-btn" data-tab="tab-dict">
-                        <span class="tab-icon">📖</span> Diccionario
-                    </button>
                 </div>
 
-                <!-- TAB 1: Matching - REAL matching with columns -->
-                <div class="tab-panel active" id="tab-matching">
-                    <div class="demo-area">
-                        <p class="demo-prompt">🔗 <strong>Uní cada palabra en chino</strong> con su significado correcto: seleccioná un elemento de cada columna.</p>
-                        <div class="demo-instruction">
-                            💡 Hacé clic en un carácter chino y luego en su traducción (o viceversa).
+                <!-- TAB 1: Unir Flechas - Copied from ejercicios.html -->
+                <div class="tab-panel active" id="tab-match">
+                    <div class="exercise-box">
+                        <div class="exercise-header">
+                            <h3 style="color: #81C784;">1. Unir con flechas (Tonos y Significado)</h3>
+                            <button class="btn-reset" onclick="resetMatchGame()">↻ Cargar nuevos aleatorios</button>
                         </div>
-                        <div class="match-columns" id="match-demo">
-                            <div class="match-col" id="match-zh-col"></div>
-                            <div class="match-col" id="match-es-col"></div>
-                        </div>
-                        <div class="demo-feedback" id="fb-matching"></div>
-                        <button class="demo-reset" onclick="resetMatchDemo()">🔄 Reintentar</button>
-                    </div>
-                </div>
-
-                <!-- TAB 2: Fill - Options ONLY in Chinese, with translate button -->
-                <div class="tab-panel" id="tab-fill">
-                    <div class="demo-area">
-                        <p class="demo-prompt">✍️ <strong>Completá la frase:</strong> Elegí la palabra correcta (solo en chino).</p>
-                        <p class="fill-sentence" id="fill-demo-sentence">
-                            我 <span class="blank-spot-fill">___</span> 学生
-                        </p>
-                        <p style="color: var(--uk-texto-sec); font-size: 0.85rem; margin-bottom: 0.8rem;">
-                            ↕ "Yo ___ estudiante"
-                        </p>
-                        <div class="fill-options-chinese" id="fill-demo-options">
-                            <!-- Options generated by JS -->
-                        </div>
-                        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-                            <button class="demo-reset" onclick="checkFillDemo()" style="border-color: #81C784; color: #81C784;">✅ Verificar</button>
-                            <button class="demo-reset" onclick="resetFillDemo()">🔄 Reintentar</button>
-                        </div>
-                        <div class="demo-feedback" id="fb-fill"></div>
-                    </div>
-                </div>
-
-                <!-- TAB 3: Armar Oraciones - NO pinyin shown -->
-                <div class="tab-panel" id="tab-build">
-                    <div class="demo-area">
-                        <p class="demo-prompt">🧱 <strong>Armá la oración:</strong> Hacé clic en las palabras en el orden correcto.</p>
-                        <p class="build-translation-ref">📝 Frase a formar: <strong style="color: #81C784;">"A mí me gusta aprender chino"</strong></p>
-                        <div class="word-blocks" id="word-blocks">
-                            <span class="word-block" data-word="喜欢" onclick="placeWord(this)">喜欢</span>
-                            <span class="word-block" data-word="我" onclick="placeWord(this)">我</span>
-                            <span class="word-block" data-word="学" onclick="placeWord(this)">学</span>
-                            <span class="word-block" data-word="中文" onclick="placeWord(this)">中文</span>
-                        </div>
-                        <div class="sentence-builder" id="sentence-builder">
-                            <span style="color: var(--uk-texto-sec); font-size: 0.85rem;">⬇️ Hacé clic en las palabras de arriba para armarla</span>
-                        </div>
-                        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-                            <button class="demo-reset" onclick="checkSentence()" style="border-color: #81C784; color: #81C784;">✅ Verificar</button>
-                            <button class="demo-reset" onclick="resetBuild()">🔄 Reintentar</button>
-                        </div>
-                        <div class="demo-feedback" id="fb-build"></div>
-                    </div>
-                </div>
-
-                <!-- TAB 4: Dialog - Clean multi-step -->
-                <div class="tab-panel" id="tab-dialog">
-                    <div class="demo-area">
-                        <p class="demo-prompt">💬 <strong>Simulación de diálogo:</strong> Respondé en cada paso.</p>
-                        <button class="dialog-translate-toggle" id="dialog-toggle" onclick="toggleDialogTranslation()">🌐 Mostrar traducción</button>
+                        <p style="color: var(--uk-texto-sec);">Selecciona una palabra en pinyin/chino y luego su significado correspondiente en español.</p>
                         
-                        <div id="dialog-scene">
-                            <!-- Scene rendered by JS -->
-                        </div>
-                        
-                        <div class="dialog-options" id="dialog-options">
-                            <!-- Options rendered by JS -->
-                        </div>
-                        
-                        <div class="demo-feedback" id="fb-dialog"></div>
-                        <button class="demo-reset" onclick="resetDialog()">🔄 Empezar de nuevo</button>
-                    </div>
-                </div>
-
-                <!-- TAB 5: Diccionario -->
-                <div class="tab-panel" id="tab-dict">
-                    <div class="demo-area">
-                        <p class="demo-prompt">📖 <strong>Buscador de Vocabulario</strong> — Escribí una palabra en español o chino:</p>
-                        <div style="display: flex; gap: 0.6rem; margin-bottom: 1rem;">
-                            <input type="text" id="dict-search" placeholder="Ej: hola, 你好, comer, amor..." 
-                                   style="flex: 1; padding: 0.8rem 1.2rem; background: rgba(0,0,0,0.3); border: 1px solid var(--uk-borde); border-radius: 8px; color: var(--uk-texto); font-family: 'Poppins', sans-serif; font-size: 1rem;">
-                            <button onclick="searchDict()" style="padding: 0.8rem 1.5rem; background: rgba(212,168,67,0.15); border: 1px solid var(--uk-dorado); color: var(--uk-dorado); border-radius: 8px; cursor: pointer; font-family: 'Poppins', sans-serif;">🔍 Buscar</button>
-                        </div>
-                        <div id="dict-results" style="display: none;">
-                            <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--uk-borde); border-radius: 10px; padding: 1.2rem;">
-                                <p id="dict-word" style="font-size: 1.5rem; font-family: 'Noto Serif SC', serif; color: var(--uk-dorado);"></p>
-                                <p id="dict-pinyin" style="color: var(--uk-texto); font-style: italic;"></p>
-                                <p id="dict-meaning" style="color: var(--uk-texto-sec); margin-top: 0.5rem;"></p>
+                        <div id="match-game" class="match-game-container">
+                            <svg id="lines-svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></svg>
+                            <div id="chinese-words" class="word-column">
+                                <!-- Botones generados por JS -->
+                            </div>
+                            <div id="spanish-words" class="word-column">
+                                <!-- Botones generados por JS -->
                             </div>
                         </div>
-                        <div id="dict-notfound" style="display: none; color: var(--uk-texto-sec); padding: 1rem; text-align: center; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            🔍 No se encontró la palabra. Probá con: <strong style="color: var(--uk-dorado);">hola, gracias, comer, amor, amigo, agua</strong>
+                        <p id="match-message" class="message" style="color: var(--uk-texto-sec);"></p>
+                    </div>
+                </div>
+
+                <!-- TAB 2: Completar Frases -->
+                <div class="tab-panel" id="tab-fill">
+                    <div class="exercise-box">
+                        <div class="exercise-header">
+                            <h3 style="color: #81C784;">2. Completa las frases chinas</h3>
+                            <button class="btn-reset" onclick="initFillBlanks()">↻ Cargar nuevas frases</button>
                         </div>
+                        <p style="color: var(--uk-texto-sec);">Selecciona la opción correcta para completar la frase.</p>
+                        
+                        <div id="fill-blanks-container">
+                            <!-- Se llena con JS -->
+                        </div>
+                        
+                        <button class="btn-primary" onclick="checkFillBlanks()">Comprobar Respuestas</button>
+                        <p id="fill-message" class="message" style="color: var(--uk-texto-sec);"></p>
+                    </div>
+                </div>
+
+                <!-- TAB 3: Armar Oraciones -->
+                <div class="tab-panel" id="tab-build">
+                    <div class="exercise-box">
+                        <div class="exercise-header">
+                            <h3 style="color: #81C784;">3. Arma la Oración</h3>
+                            <button class="btn-reset" onclick="initBuilder()">↻ Cargar nueva frase</button>
+                        </div>
+                        <p style="color: var(--uk-texto-sec);">Ordena las palabras chinas para que coincidan con la traducción en español.</p>
+                        
+                        <div style="margin: 1.5rem 0;">
+                            <p style="color: var(--uk-texto-sec); font-style: italic; margin-bottom: 10px; font-size: 1.1rem;" id="build-translation">"..."</p>
+                            
+                            <p style="color: var(--uk-dorado); font-weight: 600; margin-bottom: 5px;">Tu oración:</p>
+                            <div id="build-constructed" class="builder-area">
+                                <!-- Palabras seleccionadas -->
+                            </div>
+                            
+                            <p style="color: var(--uk-texto); font-weight: 600; margin-bottom: 5px;">Palabras disponibles:</p>
+                            <div id="build-scrambled" class="builder-area" style="background: rgba(0,0,0,0.2);">
+                                <!-- Palabras desordenadas -->
+                            </div>
+                        </div>
+                        
+                        <button class="btn-primary" onclick="checkBuilder()">Comprobar Oración</button>
+                        <p id="build-message" class="message" style="color: var(--uk-texto-sec);"></p>
                     </div>
                 </div>
             </div>
@@ -1343,11 +1490,12 @@
         <!-- ========================================== -->
         <section class="proposal-section path-card">
             <h2>🗺️ Recorrido Personalizado</h2>
-            <p class="section-subtitle">Un camino de aprendizaje interactivo como en los juegos mobile</p>
+            <p class="section-subtitle">Cada nodo es una lección — tocalo para ver qué vas a aprender</p>
             <p style="color: var(--uk-texto-sec); margin-bottom: 0.5rem; font-size: 0.95rem;">
-                Cada estudiante avanza por un <strong style="color: #A78BFA;">camino de aprendizaje visual</strong>. 
-                Cada punto del recorrido es una lección que se ilumina al tocarla y despliega su contenido. 
-                El progreso es persistente y se adapta al ritmo de cada alumno.
+                El estudiante avanza por un <strong style="color: #A78BFA;">camino de lecciones</strong> como en los juegos mobile. 
+                Cada nodo es una <strong style="color: #A78BFA;">lección interactiva</strong> que al tocarla se ilumina y te muestra 
+                qué contenidos y <strong style="color: #81C784;">ejercicios interactivos</strong> incluye. 
+                Tocá cualquier nodo para explorar su contenido.
             </p>
 
             <div class="path-container">
@@ -1371,11 +1519,6 @@
                     <p>Accesible desde PC, tablet y móvil. Sin instalación. Funciona en cualquier navegador moderno.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="fc-icon">🤖</span>
-                    <h4>Corrección Automática con IA</h4>
-                    <p>Evaluación inteligente de respuestas con feedback personalizado al instante. Identifica patrones de error.</p>
-                </div>
-                <div class="feature-card">
                     <span class="fc-icon">📊</span>
                     <h4>Dashboard Docente</h4>
                     <p>Panel de control con estadísticas de rendimiento por alumno, por curso y por tipo de ejercicio. Progreso en tiempo real.</p>
@@ -1391,14 +1534,9 @@
                     <p>Sistema de puntos, insignias, rachas y rankings. Aprendizaje impulsado por motivación y logros.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="fc-icon">👥</span>
-                    <h4>Modo Multijugador</h4>
-                    <p>Ejercicios colaborativos y competitivos entre alumnos en tiempo real. Desafíos y torneos semanales.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="fc-icon">📈</span>
-                    <h4>Progreso Adaptativo</h4>
-                    <p>El sistema ajusta la dificultad según el rendimiento individual. Ritmo personalizado para cada estudiante.</p>
+                    <span class="fc-icon">🎨</span>
+                    <h4>🎮 Juegos Multijugador</h4>
+                    <p>Modo <strong>Pictionary en chino</strong>: un alumno dibuja un concepto y los demás deben responder en mandarín. Ideal para practicar vocabulario de forma divertida y colaborativa en tiempo real.</p>
                 </div>
                 <div class="feature-card">
                     <span class="fc-icon">📁</span>
@@ -1442,9 +1580,6 @@
             <p style="font-size: 0.9rem;">
                 Instituto de Estudios de China y el Sudeste Asiático
             </p>
-            <p style="margin-top: 1rem;">
-                📩 <a href="mailto:pachu@chinapp.com" style="color: var(--uk-dorado); text-decoration: none;">pachu@chinapp.com</a>
-            </p>
         </div>
 
     </main>
@@ -1454,10 +1589,13 @@
     </footer>
 
     <script src="plexus.js"></script>
+    <script src="data.js"></script>
+    <script src="fixed_phrases.js"></script>
+    <script src="script.js"></script>
 
     <script>
         // ======================
-        // TABS
+        // TABS (presentacionuk style)
         // ======================
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -1469,568 +1607,69 @@
         });
 
         // ============================================================
-        // TAB 1: Matching — Real matching between two columns
-        // ============================================================
-        const matchPairs = [
-            { zh: '你好', es: 'Hola', pinyin: 'nǐ hǎo' },
-            { zh: '谢谢', es: 'Gracias', pinyin: 'xiè xiè' },
-            { zh: '再见', es: 'Adiós', pinyin: 'zài jiàn' },
-            { zh: '对不起', es: 'Perdón', pinyin: 'duì bu qǐ' },
-            { zh: '水', es: 'Agua', pinyin: 'shuǐ' },
-            { zh: '朋友', es: 'Amigo', pinyin: 'péng yǒu' }
-        ];
-
-        let matchSelected = { zh: null, es: null };
-        let matchMatched = 0;
-        let matchTotal = 0;
-
-        function initMatchDemo() {
-            const zhCol = document.getElementById('match-zh-col');
-            const esCol = document.getElementById('match-es-col');
-            const fb = document.getElementById('fb-matching');
-            zhCol.innerHTML = '';
-            esCol.innerHTML = '';
-            fb.className = 'demo-feedback';
-            fb.innerHTML = '';
-            matchSelected = { zh: null, es: null };
-            matchMatched = 0;
-            matchTotal = 0;
-
-            // Pick 4 random pairs
-            const shuffled = [...matchPairs].sort(() => Math.random() - 0.5);
-            const selected = shuffled.slice(0, 4);
-            matchTotal = selected.length;
-
-            const zhItems = [...selected].sort(() => Math.random() - 0.5);
-            const esItems = [...selected].sort(() => Math.random() - 0.5);
-
-            zhItems.forEach((item, idx) => {
-                const card = document.createElement('div');
-                card.className = 'match-card zh-card';
-                card.textContent = item.zh;
-                card.dataset.id = idx;
-                card.dataset.match = item.es;
-                card.onclick = () => selectMatchCard(card, 'zh');
-                zhCol.appendChild(card);
-            });
-
-            esItems.forEach((item, idx) => {
-                const card = document.createElement('div');
-                card.className = 'match-card';
-                card.textContent = item.es;
-                card.dataset.id = idx;
-                card.dataset.match = item.zh;
-                card.onclick = () => selectMatchCard(card, 'es');
-                esCol.appendChild(card);
-            });
-        }
-
-        function selectMatchCard(card, type) {
-            if (card.classList.contains('matched')) return;
-
-            // Deselect previous in same column
-            document.querySelectorAll(`#match-${type}-col .match-card`).forEach(c => {
-                if (!c.classList.contains('matched')) c.classList.remove('selected');
-            });
-
-            card.classList.add('selected');
-            matchSelected[type] = card;
-
-            if (matchSelected.zh && matchSelected.es) {
-                checkMatchPair();
-            }
-        }
-
-        function checkMatchPair() {
-            const fb = document.getElementById('fb-matching');
-            const zh = matchSelected.zh;
-            const es = matchSelected.es;
-
-            if (zh.dataset.match === es.textContent) {
-                // Correct match
-                zh.classList.remove('selected');
-                es.classList.remove('selected');
-                zh.classList.add('matched');
-                es.classList.add('matched');
-                matchMatched++;
-
-                fb.className = 'demo-feedback show success';
-                fb.innerHTML = '✅ ¡Correcto!';
-
-                if (matchMatched === matchTotal) {
-                    fb.innerHTML = '🎉 ¡Felicitaciones! Completaste todas las correspondencias.';
-                }
-
-                matchSelected = { zh: null, es: null };
-            } else {
-                // Wrong match
-                zh.classList.add('error-shake');
-                es.classList.add('error-shake');
-                fb.className = 'demo-feedback show error';
-                fb.innerHTML = '❌ Esa combinación no es correcta. Intentá de nuevo.';
-
-                const tempZh = matchSelected.zh;
-                const tempEs = matchSelected.es;
-                matchSelected = { zh: null, es: null };
-
-                setTimeout(() => {
-                    tempZh.classList.remove('selected', 'error-shake');
-                    tempEs.classList.remove('selected', 'error-shake');
-                    if (fb.innerHTML.includes('combinación')) {
-                        fb.className = 'demo-feedback';
-                        fb.innerHTML = '';
-                    }
-                }, 800);
-            }
-        }
-
-        function resetMatchDemo() {
-            initMatchDemo();
-        }
-
-        // ============================================================
-        // TAB 2: Fill — Options ONLY in Chinese, with translate button
-        // ============================================================
-        const fillQuestions = [
-            {
-                zh: '我 ___ 学生',
-                es: 'Yo ___ estudiante',
-                blank: 1,
-                options: [
-                    { zh: '是', pinyin: 'shì', es: 'Ser/Estar' },
-                    { zh: '有', pinyin: 'yǒu', es: 'Tener' },
-                    { zh: '去', pinyin: 'qù', es: 'Ir' },
-                    { zh: '看', pinyin: 'kàn', es: 'Ver/Mirar' }
-                ],
-                correct: '是'
-            },
-            {
-                zh: '你 ___ 什么？',
-                es: 'Tú ___ ¿qué?',
-                blank: 1,
-                options: [
-                    { zh: '喜欢', pinyin: 'xǐhuān', es: 'Gustar' },
-                    { zh: '知道', pinyin: 'zhīdào', es: 'Saber' },
-                    { zh: '可以', pinyin: 'kěyǐ', es: 'Poder' },
-                    { zh: '应该', pinyin: 'yīnggāi', es: 'Deber' }
-                ],
-                correct: '喜欢'
-            }
-        ];
-        let currentFillQ = 0;
-        let fillSelected = null;
-
-        function initFillDemo() {
-            currentFillQ = Math.floor(Math.random() * fillQuestions.length);
-            fillSelected = null;
-            const q = fillQuestions[currentFillQ];
-
-            const sentenceEl = document.getElementById('fill-demo-sentence');
-            const parts = q.zh.split('___');
-            sentenceEl.innerHTML = parts[0] + '<span class="blank-spot-fill" id="fill-blank-demo">___</span>' + (parts[1] || '');
-
-            const optContainer = document.getElementById('fill-demo-options');
-            optContainer.innerHTML = '';
-
-            const shuffledOpts = [...q.options].sort(() => Math.random() - 0.5);
-            shuffledOpts.forEach((opt, idx) => {
-                const wrapper = document.createElement('div');
-                wrapper.style.display = 'flex';
-                wrapper.style.alignItems = 'center';
-
-                const btn = document.createElement('button');
-                btn.className = 'fill-opt';
-                btn.textContent = opt.zh;
-                btn.dataset.zh = opt.zh;
-                btn.dataset.pinyin = opt.pinyin;
-                btn.dataset.es = opt.es;
-                btn.onclick = () => selectFillDemo(btn, idx);
-                wrapper.appendChild(btn);
-
-                const translateBtn = document.createElement('button');
-                translateBtn.className = 'btn-translate-opt';
-                translateBtn.textContent = '🔍 Traducir';
-                translateBtn.onclick = (e) => {
-                    e.stopPropagation();
-                    showFillTranslation(translateBtn, opt);
-                };
-                wrapper.appendChild(translateBtn);
-
-                optContainer.appendChild(wrapper);
-            });
-
-            document.getElementById('fb-fill').className = 'demo-feedback';
-            document.getElementById('fb-fill').innerHTML = '';
-        }
-
-        function selectFillDemo(btn) {
-            document.querySelectorAll('.fill-opt').forEach(b => {
-                b.classList.remove('selected', 'wrong');
-            });
-            btn.classList.add('selected');
-            fillSelected = btn.dataset.zh;
-            document.getElementById('fill-blank-demo').textContent = btn.dataset.zh;
-            document.getElementById('fill-blank-demo').style.color = '#FFF';
-        }
-
-        function showFillTranslation(btn, opt) {
-            // Remove existing tooltip
-            const existing = btn.parentElement.querySelector('.translate-tooltip');
-            if (existing) existing.remove();
-
-            const tip = document.createElement('span');
-            tip.className = 'translate-tooltip';
-            tip.textContent = `${opt.pinyin} — ${opt.es}`;
-            btn.parentElement.appendChild(tip);
-
-            setTimeout(() => { if (tip.parentElement) tip.remove(); }, 3000);
-        }
-
-        function checkFillDemo() {
-            const fb = document.getElementById('fb-fill');
-            if (!fillSelected) {
-                fb.className = 'demo-feedback show error';
-                fb.innerHTML = '⚠️ Seleccioná una palabra primero.';
-                return;
-            }
-
-            const q = fillQuestions[currentFillQ];
-            if (fillSelected === q.correct) {
-                fb.className = 'demo-feedback show success';
-                fb.innerHTML = `✅ ¡Correcto! <span style="color: var(--uk-dorado);">${q.correct}</span> es la palabra correcta. Mostrar traducción con el botón 🔍 de cada opción.`;
-            } else {
-                fb.className = 'demo-feedback show error';
-                fb.innerHTML = `❌ Incorrecto. La respuesta correcta era <strong style="color: #81C784;">${q.correct}</strong>.`;
-                // Highlight correct
-                document.querySelectorAll('.fill-opt').forEach(b => {
-                    if (b.dataset.zh === q.correct) {
-                        b.classList.add('selected');
-                    }
-                    if (b.dataset.zh === fillSelected) {
-                        b.classList.add('wrong');
-                    }
-                });
-            }
-        }
-
-        function resetFillDemo() {
-            initFillDemo();
-        }
-
-        // ============================================================
-        // TAB 3: Armar Oraciones
-        // ============================================================
-        let placedWords = [];
-        let buildOrder = ['我', '喜欢', '学', '中文'];
-
-        function placeWord(el) {
-            if (el.classList.contains('used')) return;
-            el.classList.add('used');
-
-            const builder = document.getElementById('sentence-builder');
-            if (builder.querySelector('span') && builder.querySelector('span').innerText.includes('⬇️')) {
-                builder.innerHTML = '';
-            }
-
-            const span = document.createElement('span');
-            span.className = 'placed-word';
-            span.textContent = el.textContent;
-            span.dataset.word = el.dataset.word;
-            span.onclick = function() { removeWord(this, el); };
-            builder.appendChild(span);
-            placedWords.push(el.dataset.word);
-
-            document.getElementById('fb-build').className = 'demo-feedback';
-            document.getElementById('fb-build').innerHTML = '';
-        }
-
-        function removeWord(placedEl, originalBlock) {
-            placedEl.remove();
-            originalBlock.classList.remove('used');
-            placedWords = placedWords.filter(w => w !== originalBlock.dataset.word);
-        }
-
-        function checkSentence() {
-            const feedback = document.getElementById('fb-build');
-
-            if (placedWords.length !== buildOrder.length) {
-                feedback.className = 'demo-feedback show error';
-                feedback.innerHTML = '❌ Todavía faltan palabras. Hacé clic en todas las palabras para armarla.';
-                return;
-            }
-
-            const isCorrect = placedWords.every((w, i) => w === buildOrder[i]);
-
-            if (isCorrect) {
-                feedback.className = 'demo-feedback show success';
-                feedback.innerHTML = '✅ ¡Perfecto! "我喜欢学中文" = "A mí me gusta aprender chino".';
-                document.querySelectorAll('.placed-word').forEach(el => {
-                    el.style.background = 'rgba(76, 175, 80, 0.25)';
-                    el.style.borderColor = '#4CAF50';
-                });
-            } else {
-                feedback.className = 'demo-feedback show error';
-                feedback.innerHTML = '❌ El orden no es correcto. Pista: Sujeto + Verbo + Objeto.';
-                document.querySelectorAll('.placed-word').forEach(el => {
-                    el.style.background = 'rgba(200, 16, 46, 0.2)';
-                    el.style.borderColor = '#E57373';
-                    setTimeout(() => {
-                        el.style.background = 'rgba(212, 168, 67, 0.2)';
-                        el.style.borderColor = 'var(--uk-dorado)';
-                    }, 1000);
-                });
-            }
-        }
-
-        function resetBuild() {
-            const builder = document.getElementById('sentence-builder');
-            builder.innerHTML = '<span style="color: var(--uk-texto-sec); font-size: 0.85rem;">⬇️ Hacé clic en las palabras de arriba para armarla</span>';
-            document.querySelectorAll('.word-block').forEach(el => el.classList.remove('used'));
-            placedWords = [];
-            document.getElementById('fb-build').className = 'demo-feedback';
-            document.getElementById('fb-build').innerHTML = '';
-        }
-
-        // ============================================================
-        // TAB 4: Diálogo multi-step
-        // ============================================================
-        const dialogScenes = [
-            {
-                speaker: '👩‍🏫',
-                zh: 'Nǐ hǎo! Wǒ jiào Lǐ Míng. Nǐ ne?',
-                es: '¡Hola! Me llamo Li Ming. ¿Y vos?',
-                options: [
-                    { zh: 'Wǒ jiào...', es: 'Me llamo...', correct: true, feedback: '✅ ¡Correcto! Es la forma estándar de presentarse después de que alguien se presenta.' },
-                    { zh: 'Zàijiàn!', es: 'Adiós', correct: false, feedback: '❌ "Zàijiàn" es "adiós", muy abrupto para empezar una conversación.' },
-                    { zh: 'Xiè xiè!', es: 'Gracias', correct: false, feedback: '❌ "Xiè xiè" significa "gracias". No responde a una presentación.' }
-                ]
-            },
-            {
-                speaker: '👩‍🏫',
-                zh: 'Nǐ hǎo! Nǐ shì nǎ guó rén?',
-                es: '¡Hola! ¿De qué país sos?',
-                options: [
-                    { zh: 'Wǒ shì Āgēntíng rén.', es: 'Soy argentino', correct: true, feedback: '✅ ¡Correcto! "Wǒ shì... rén" = "Soy de... (país)".' },
-                    { zh: 'Wǒ hěn hǎo.', es: 'Estoy muy bien', correct: false, feedback: '❌ "Wǒ hěn hǎo" responde a "¿cómo estás?", no a "¿de dónde sos?".' },
-                    { zh: 'Wǒ chī fàn.', es: 'Como comida', correct: false, feedback: '❌ "Wǒ chī fàn" significa "como comida", no responde a la pregunta.' }
-                ]
-            },
-            {
-                speaker: '👩‍🏫',
-                zh: 'Hěn gāoxìng rènshí nǐ! Huānyíng!',
-                es: '¡Mucho gusto conocerte! ¡Bienvenido!',
-                options: [
-                    { zh: 'Wǒ yě hěn gāoxìng rènshí nǐ!', es: 'Yo también, mucho gusto.', correct: true, feedback: '✅ ¡Perfecto! "Wǒ yě..." = "Yo también..." es la respuesta educada.' },
-                    { zh: 'Wǒ bù gāoxìng.', es: 'No estoy feliz.', correct: false, feedback: '❌ "Wǒ bù gāoxìng" significa "no estoy feliz", no es apropiado.' },
-                    { zh: 'Nǐ hǎo ma?', es: '¿Cómo estás?', correct: false, feedback: '❌ "Nǐ hǎo ma?" es una pregunta, no una respuesta a un saludo de bienvenida.' }
-                ]
-            }
-        ];
-
-        let currentScene = 0;
-        let dialogShowTranslation = false;
-
-        function renderScene() {
-            const scene = dialogScenes[currentScene];
-            const container = document.getElementById('dialog-scene');
-            const optContainer = document.getElementById('dialog-options');
-
-            let html = `<div class="dialog-scenario">
-                <div class="dialog-line">
-                    <div class="dialog-avatar">${scene.speaker}</div>
-                    <div class="dialog-bubble zh">${dialogShowTranslation ? scene.zh + '<br><span class="dialog-bubble es">' + scene.es + '</span>' : scene.zh}</div>
-                </div>
-            </div>`;
-            container.innerHTML = html;
-
-            optContainer.innerHTML = '';
-            const shuffledOpts = [...scene.options].sort(() => Math.random() - 0.5);
-            shuffledOpts.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'demo-option';
-                btn.innerHTML = `<strong>${opt.zh}</strong> ${dialogShowTranslation ? '<br><span style="font-size:0.85rem;color:var(--uk-texto-sec)">' + opt.es + '</span>' : ''}`;
-                btn.onclick = () => checkDialogResponse(btn, opt, idx);
-                optContainer.appendChild(btn);
-            });
-
-            document.getElementById('fb-dialog').className = 'demo-feedback';
-            document.getElementById('fb-dialog').innerHTML = '';
-
-            // Update progress
-            const progressHtml = `<div style="text-align:center;margin-top:0.5rem;color:var(--uk-texto-sec);font-size:0.85rem;">
-                Paso ${currentScene + 1} de ${dialogScenes.length}
-            </div>`;
-            container.innerHTML += progressHtml;
-        }
-
-        function checkDialogResponse(btn, opt) {
-            const fb = document.getElementById('fb-dialog');
-            const options = document.querySelectorAll('#dialog-options .demo-option');
-
-            // Disable all
-            options.forEach(o => { o.disabled = true; o.style.cursor = 'default'; });
-
-            if (opt.correct) {
-                btn.classList.add('correct');
-                fb.className = 'demo-feedback show success';
-                fb.innerHTML = opt.feedback;
-
-                // Auto-advance to next scene after delay
-                if (currentScene < dialogScenes.length - 1) {
-                    setTimeout(() => {
-                        currentScene++;
-                        renderScene();
-                    }, 2000);
-                } else {
-                    fb.innerHTML += '<br><br>🎉 ¡Completaste todo el diálogo! Hacé clic en "Empezar de nuevo" para practicar otra vez.';
-                }
-            } else {
-                btn.classList.add('incorrect');
-                fb.className = 'demo-feedback show error';
-                fb.innerHTML = opt.feedback;
-
-                // Show correct answer
-                options.forEach(o => {
-                    if (o.querySelector('strong') && o.querySelector('strong').textContent === scene.options.find(s => s.correct).zh) {
-                        o.classList.add('correct');
-                    }
-                });
-
-                setTimeout(() => {
-                    options.forEach(o => { o.disabled = false; o.style.cursor = 'pointer'; o.classList.remove('correct', 'incorrect'); });
-                    fb.className = 'demo-feedback';
-                    fb.innerHTML = '';
-                }, 2000);
-            }
-        }
-
-        function toggleDialogTranslation() {
-            dialogShowTranslation = !dialogShowTranslation;
-            document.getElementById('dialog-toggle').textContent = dialogShowTranslation ? '🌐 Ocultar traducción' : '🌐 Mostrar traducción';
-            renderScene();
-        }
-
-        function resetDialog() {
-            currentScene = 0;
-            dialogShowTranslation = false;
-            document.getElementById('dialog-toggle').textContent = '🌐 Mostrar traducción';
-            renderScene();
-        }
-
-        // ============================================================
-        // TAB 5: Diccionario search
-        // ============================================================
-        const dictData = [
-            { zh: '你好', pinyin: 'nǐ hǎo', es: 'Hola' },
-            { zh: '谢谢', pinyin: 'xiè xiè', es: 'Gracias' },
-            { zh: '再见', pinyin: 'zài jiàn', es: 'Adiós' },
-            { zh: '对不起', pinyin: 'duì bu qǐ', es: 'Perdón' },
-            { zh: '水', pinyin: 'shuǐ', es: 'Agua' },
-            { zh: '朋友', pinyin: 'péng yǒu', es: 'Amigo' },
-            { zh: '是', pinyin: 'shì', es: 'Ser/Estar' },
-            { zh: '吃', pinyin: 'chī', es: 'Comer' },
-            { zh: '喜欢', pinyin: 'xǐhuān', es: 'Gustar' },
-            { zh: '爱', pinyin: 'ài', es: 'Amor' },
-            { zh: '学', pinyin: 'xué', es: 'Aprender/Estudiar' },
-            { zh: '中文', pinyin: 'zhōngwén', es: 'Chino (idioma)' }
-        ];
-
-        function searchDict() {
-            const query = document.getElementById('dict-search').value.trim().toLowerCase();
-            const results = document.getElementById('dict-results');
-            const notFound = document.getElementById('dict-notfound');
-
-            results.style.display = 'none';
-            notFound.style.display = 'none';
-
-            if (!query) { return; }
-
-            const match = dictData.find(d =>
-                d.zh.includes(query) || d.es.toLowerCase().includes(query) || d.pinyin.includes(query)
-            );
-
-            if (match) {
-                document.getElementById('dict-word').textContent = match.zh;
-                document.getElementById('dict-pinyin').textContent = `[${match.pinyin}]`;
-                document.getElementById('dict-meaning').textContent = `📖 ${match.es}`;
-                results.style.display = 'block';
-            } else {
-                notFound.style.display = 'block';
-            }
-        }
-
-        // Allow Enter key
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('dict-search');
-            if (searchInput) {
-                searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchDict(); });
-            }
-        });
-
-        // ============================================================
         // 🗺️ RECORRIDO PERSONALIZADO — Interactive Path
         // ============================================================
         const pathNodes = [
             {
                 icon: '🎯',
                 label: 'Los Tonos del Mandarín',
-                desc: 'Fundamentos de pronunciación',
-                detailTitle: 'Lección 1: Los 4 Tonos + Neutro',
-                detailText: 'El chino mandarín tiene 4 tonos principales más un tono neutro. Cada sílaba tiene un tono que cambia su significado. Por ejemplo: mā ( mamá), má (cáñamo), mǎ (caballo), mà (insultar), ma (partícula). Dominar los tonos es esencial para ser entendido.',
-                tag: '🔤 5 lecciones'
+                desc: 'Lección 1: pronunciación',
+                detailTitle: '🎯 Lección 1: Los 4 Tonos + Neutro',
+                detailText: '📖 En esta lección vas a ver: los 4 tonos del chino mandarín más el tono neutro. Cada sílaba tiene un tono que cambia su significado. Por ejemplo: mā (mamá), má (cáñamo), mǎ (caballo), mà (insultar), ma (partícula). Dominar los tonos es esencial para ser entendido.\n\n🎮 Ejercicios interactivos: identificar tonos al escuchar, unir tonos con significados, práctica de pronunciación con feedback visual.',
+                tag: '🎮 5 ejercicios interactivos'
             },
             {
                 icon: '📝',
                 label: 'Saludos y Presentaciones',
-                desc: 'Primeras conversaciones',
-                detailTitle: 'Lección 2: Saludar y Presentarse',
-                detailText: 'Aprendé las frases básicas para saludar: 你好 (nǐ hǎo) = hola, 早上好 (zǎoshang hǎo) = buenos días, 谢谢 (xiè xiè) = gracias. También cómo presentarte: 我叫... (wǒ jiào...) = me llamo..., 我是... (wǒ shì...) = yo soy...',
-                tag: '💬 8 frases'
+                desc: 'Lección 2: primeras conversaciones',
+                detailTitle: '📝 Lección 2: Saludar y Presentarse',
+                detailText: '📖 En esta lección vas a ver: frases básicas para saludar y presentarte. 你好 (nǐ hǎo) = hola, 早上好 (zǎoshang hǎo) = buenos días, 谢谢 (xiè xiè) = gracias. También cómo presentarte: 我叫... (wǒ jiào...) = me llamo..., 我是... (wǒ shì...) = yo soy...\n\n🎮 Ejercicios interactivos: completar diálogos de presentación, unir saludos con su significado, simulación de conversación con opciones múltiples.',
+                tag: '🎮 8 ejercicios interactivos'
             },
             {
                 icon: '🧮',
                 label: 'Números y Cantidades',
-                desc: 'Contar del 1 al 100',
-                detailTitle: 'Lección 3: Los Números',
-                detailText: 'Los números en chino son muy lógicos: 1=一(yī), 2=二(èr), 3=三(sān), 4=四(sì), 5=五(wǔ), 6=六(liù), 7=七(qī), 8=八(bā), 9=九(jiǔ), 10=十(shí). Para formar números mayores, simplemente combinás: 11=十一(shíyī), 20=二十(èrshí), 100=一百(yībǎi).',
-                tag: '🔢 10 ejercicios'
+                desc: 'Lección 3: contar del 1 al 100',
+                detailTitle: '🧮 Lección 3: Los Números',
+                detailText: '📖 En esta lección vas a ver: los números en chino, que son muy lógicos — 1=一(yī), 2=二(èr), 3=三(sān), 4=四(sì), 5=五(wǔ), 6=六(liù), 7=七(qī), 8=八(bā), 9=九(jiǔ), 10=十(shí). Para formar números mayores combinás: 11=十一(shíyī), 20=二十(èrshí), 100=一百(yībǎi).\n\n🎮 Ejercicios interactivos: escribir números en chino según el número arábigo, completar secuencias numéricas, juego de conteo rápido con tiempo límite.',
+                tag: '🎮 10 ejercicios interactivos'
             },
             {
                 icon: '🍜',
                 label: 'Comida y Bebida',
-                desc: 'Vocabulario esencial para comer',
-                detailTitle: 'Lección 4: En el Restaurante',
-                detailText: 'Vocabulario clave: 吃(chī)=comer, 喝(hē)=beber, 米饭(mǐfàn)=arroz, 面条(miàntiáo)=fideos, 鸡肉(jīròu)=pollo, 茶(chá)=té, 咖啡(kāfēi)=café, 啤酒(píjiǔ)=cerveza. Frase útil: 我要...(wǒ yào...)=quiero...',
-                tag: '🥢 15 palabras'
+                desc: 'Lección 4: vocabulario para comer',
+                detailTitle: '🍜 Lección 4: En el Restaurante',
+                detailText: '📖 En esta lección vas a ver: vocabulario clave para comer y beber. 吃(chī)=comer, 喝(hē)=beber, 米饭(mǐfàn)=arroz, 面条(miàntiáo)=fideos, 鸡肉(jīròu)=pollo, 茶(chá)=té, 咖啡(kāfēi)=café, 啤酒(píjiǔ)=cerveza. Frase útil: 我要...(wǒ yào...)=quiero...\n\n🎮 Ejercicios interactivos: arrastrar imágenes a su palabra en chino, completar pedidos en un restaurante simulado, juego de memoria con vocabulario de comida.',
+                tag: '🎮 15 ejercicios interactivos'
             },
             {
                 icon: '🏛️',
                 label: 'Estructuras Básicas',
-                desc: 'Sujeto + Verbo + Objeto',
-                detailTitle: 'Lección 5: Gramática Fundamental',
-                detailText: 'El orden básico en chino es Sujeto + Verbo + Objeto, igual que en español. Ejemplo: 我喝茶 (wǒ hē chá) = yo bebo té. Para negar se usa 不 (bù) antes del verbo: 我不喝茶 (wǒ bù hē chá) = yo no bebo té. Para preguntar se usa 吗 (ma) al final: 你喝茶吗？(nǐ hē chá ma?) = ¿bebés té?',
-                tag: '📐 4 reglas'
+                desc: 'Lección 5: sujeto + verbo + objeto',
+                detailTitle: '🏛️ Lección 5: Gramática Fundamental',
+                detailText: '📖 En esta lección vas a ver: el orden básico en chino — Sujeto + Verbo + Objeto, igual que en español. Ejemplo: 我喝茶 (wǒ hē chá) = yo bebo té. Para negar se usa 不 (bù) antes del verbo: 我不喝茶 (wǒ bù hē chá). Para preguntar se usa 吗 (ma) al final: 你喝茶吗？(nǐ hē chá ma?) = ¿bebés té?\n\n🎮 Ejercicios interactivos: armar oraciones con palabras desordenadas, completar frases con la palabra faltante, convertir oraciones afirmativas a negativas y preguntas.',
+                tag: '🎮 4 ejercicios interactivos'
             },
             {
                 icon: '🗣️',
                 label: 'Práctica de Diálogos',
-                desc: 'Conversaciones simuladas',
-                detailTitle: 'Lección 6: Poniéndolo en Práctica',
-                detailText: 'Combiná todo lo aprendido en diálogos completos. Practicá situaciones reales: pedir comida, preguntar direcciones, hablar de gustos. La práctica constante es la clave para la fluidez.',
-                tag: '💬 3 diálogos'
+                desc: 'Lección 6: conversaciones simuladas',
+                detailTitle: '🗣️ Lección 6: Poniéndolo en Práctica',
+                detailText: '📖 En esta lección vas a ver: cómo combinar todo lo aprendido en diálogos completos. Situaciones reales como pedir comida, preguntar direcciones, hablar de gustos. La práctica constante es la clave para la fluidez.\n\n🎮 Ejercicios interactivos: diálogos interactivos multi-paso, juego de rol con respuestas en chino, simulación Pictionary para repasar vocabulario.',
+                tag: '🎮 3 diálogos interactivos'
             }
         ];
 
         function renderPath() {
             const container = document.getElementById('path-nodes');
+            if (!container) return;
             container.innerHTML = '';
 
             pathNodes.forEach((node, idx) => {
-                // Node row
                 const nodeDiv = document.createElement('div');
                 nodeDiv.className = 'path-node';
                 if (idx === 0) nodeDiv.classList.add('active');
-                if (idx <= 1) nodeDiv.classList.add('completed'); // simulate first 2 completed
+                if (idx <= 1) nodeDiv.classList.add('completed');
                 nodeDiv.dataset.index = idx;
 
                 nodeDiv.innerHTML = `
@@ -2043,13 +1682,12 @@
 
                 nodeDiv.onclick = () => togglePathNode(idx);
 
-                // Expandable content
                 const expand = document.createElement('div');
                 expand.className = 'path-expand';
                 expand.id = `path-expand-${idx}`;
                 expand.innerHTML = `
                     <h4>${node.detailTitle}</h4>
-                    <p>${node.detailText}</p>
+                    <p>${node.detailText.replace(/\n/g, '<br>')}</p>
                     <div class="path-demo-tag">${node.tag}</div>
                 `;
 
@@ -2059,11 +1697,9 @@
         }
 
         function togglePathNode(idx) {
-            // Deselect all others
             document.querySelectorAll('.path-node').forEach(n => n.classList.remove('active'));
             document.querySelectorAll('.path-expand').forEach(e => e.classList.remove('open'));
 
-            // Select this one
             const node = document.querySelector(`.path-node[data-index="${idx}"]`);
             const expand = document.getElementById(`path-expand-${idx}`);
             if (node) node.classList.add('active');
@@ -2074,29 +1710,13 @@
         // INIT on load
         // ============================================================
         document.addEventListener('DOMContentLoaded', () => {
-            initMatchDemo();
-            initFillDemo();
-            renderScene();
             renderPath();
             // Animate level bar
             setTimeout(() => {
-                document.getElementById('level-bar').classList.add('animate');
+                const lb = document.getElementById('level-bar');
+                if (lb) lb.classList.add('animate');
             }, 500);
-            // Search for dict on Enter
-            const ds = document.getElementById('dict-search');
-            if (ds) ds.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchDict(); });
         });
-
-        // Legacy reset functions for inline onclick compatibility
-        function resetTab(tabId) {
-            const panel = document.getElementById(tabId);
-            if (!panel) return;
-            // For various tabs
-            if (tabId === 'tab-matching') resetMatchDemo();
-            if (tabId === 'tab-fill') resetFillDemo();
-            if (tabId === 'tab-dialog') resetDialog();
-            if (tabId === 'tab-build') resetBuild();
-        }
     </script>
 </body>
 </html>
